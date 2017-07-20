@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM php:7.0
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
@@ -60,8 +60,7 @@ RUN mkdir -p /usr/local/etc \
     && chmod 777 "$GEM_HOME" "$BUNDLE_BIN" \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get update \
-    && apt-get install -y php7.0 php7.0-fpm php7.0-cli php7.0-common php7.0-mbstring php7.0-gd php7.0-intl php7.0-xml php7.0-mysql php7.0-mcrypt php7.0-zip php7.0-bcmath
+RUN docker-php-ext-install mysqli pdo pdo_mysql zip bcmath
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
@@ -117,6 +116,9 @@ RUN set -ex \
 
 RUN apt-get update \
     && apt-get install -y npm
+
+RUN apt-get update \
+    && apt-get install -y telnet beanstalkd redis-server
 
 CMD [ "node" ]
 
