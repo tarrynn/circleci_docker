@@ -11,20 +11,8 @@ RUN apt-get update \
        liblzma-dev libmagickcore-dev libmagickwand-dev libmysqlclient-dev libncurses-dev libpng-dev \
        libpq-dev libreadline-dev libsqlite3-dev libssl-dev libtool libwebp-dev libxml2-dev libxslt-dev \
        libyaml-dev make patch xz-utils zlib1g-dev unzip curl \
-    && apt-get -qy build-dep git \
+    && apt-get -y install git \
     && apt-get -qy install libcurl4-openssl-dev git-man liberror-perl \
-    && mkdir -p /usr/src/git-openssl \
-    && cd /usr/src/git-openssl \
-    && apt-get source git \
-    && cd $(find -mindepth 1 -maxdepth 1 -type d -name "git-*") \
-    && sed -i -- 's/libcurl4-gnutls-dev/libcurl4-openssl-dev/' ./debian/control \
-    && sed -i -- '/TEST\s*=\s*test/d' ./debian/rules \
-    && dpkg-buildpackage -rfakeroot -b \
-    && find .. -type f -name "git_*ubuntu*.deb" -exec dpkg -i \{\} \; \
-    && rm -rf /usr/src/git-openssl \
-# Install dependencies by all python images equivalent to buildpack-deps:jessie
-# on the public repos.
-    && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
 RUN wget "https://bootstrap.pypa.io/get-pip.py" -O /tmp/get-pip.py \
@@ -79,6 +67,9 @@ RUN apt-get update \
     && apt-get install -y php7.0 php7.0-fpm php7.0-cli php7.0-common php7.0-mbstring php7.0-gd php7.0-intl php7.0-xml php7.0-mysql php7.0-mcrypt php7.0-zip php7.0-bcmath
 
 RUN apt-get update \
-    && apt-get install -y nodejs npm yarn
+    && apt-get install -y nodejs
+
+RUN apt-get update \
+    && sudo apt-get install -y npm yarn
 
 CMD [ "irb" ]
