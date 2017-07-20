@@ -75,10 +75,12 @@ RUN mkdir -p /usr/local/etc \
     && chmod 777 "$GEM_HOME" "$BUNDLE_BIN" \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN apt-get install -y language-pack-en-base \
-    && LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php \
+RUN apt-get update \
+    && apt-get install -y language-pack-en-base \
+    && add-apt-repository ppa:ondrej/php \
     && apt-get update \
-    && apt-get install -y php7.0 php7.0-cli php7.0-fpm php7.0-gd php7.0-json php7.0-mysql php7.0-readline
+    && apt-get install -y php7.0 php7.0-cli php7.0-fpm php7.0-gd php7.0-json php7.0-mysql php7.0-readline php7.0-bcmath
+
 
 
 CMD [ "irb" ]
