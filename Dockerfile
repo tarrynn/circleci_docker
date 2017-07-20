@@ -69,16 +69,8 @@ RUN apt-get update \
     && apt-get install -y nodejs
 
 RUN apt-get update \
-    && sudo apt-get install -y npm yarn
+    && apt-get install -y npm
 
-CMD [ "ruby", "-v" ]
+RUN npm install -g yarn
 
-CMD [ "bundler", "-v" ]
-
-CMD [ "php", "-v" ]
-
-CMD [ "node", "-v" ]
-
-CMD [ "yarn", "-v" ]
-
-CMD [ "npm", "-v" ]
+CMD [ "irb" ]
