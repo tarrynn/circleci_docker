@@ -1,4 +1,4 @@
-FROM ubuntu:16.04.2
+FROM ubuntu:16.04
 
 # Building git from source code:
 #   Ubuntu's default git package is built with broken gnutls. Rebuild git with openssl.
