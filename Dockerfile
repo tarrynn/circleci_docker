@@ -1,8 +1,5 @@
 FROM ubuntu:16.04
 
-# Building git from source code:
-#   Ubuntu's default git package is built with broken gnutls. Rebuild git with openssl.
-##########################################################################
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
        wget python python2.7-dev fakeroot ca-certificates tar gzip zip \
@@ -17,7 +14,7 @@ RUN apt-get update \
 
 RUN wget "https://bootstrap.pypa.io/get-pip.py" -O /tmp/get-pip.py \
     && python /tmp/get-pip.py \
-    && pip install awscli==1.11.25 \
+    && pip install --upgrade awscli \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV RUBY_MAJOR="2.2" \
