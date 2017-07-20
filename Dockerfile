@@ -71,4 +71,14 @@ RUN apt-get update \
 RUN apt-get update \
     && sudo apt-get install -y npm yarn
 
-CMD [ "irb" ]
+CMD [ "ruby", "-v" ]
+
+CMD [ "bundler", "-v" ]
+
+CMD [ "php", "-v" ]
+
+CMD [ "node", "-v" ]
+
+CMD [ "yarn", "-v" ]
+
+CMD [ "npm", "-v" ]
