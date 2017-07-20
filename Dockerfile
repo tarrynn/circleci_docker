@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.5
+FROM ubuntu:16.04.2
 
 # Building git from source code:
 #   Ubuntu's default git package is built with broken gnutls. Rebuild git with openssl.
@@ -76,11 +76,9 @@ RUN mkdir -p /usr/local/etc \
     && rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN apt-get update \
-    && apt-get install -y language-pack-en-base \
-    && add-apt-repository ppa:ondrej/php \
-    && apt-get update \
-    && apt-get install -y php7.0 php7.0-cli php7.0-fpm php7.0-gd php7.0-json php7.0-mysql php7.0-readline php7.0-bcmath
+    && apt-get install -y php7.0 php7.0-fpm php7.0-cli php7.0-common php7.0-mbstring php7.0-gd php7.0-intl php7.0-xml php7.0-mysql php7.0-mcrypt php7.0-zip php7.0-bcmath
 
-
+RUN apt-get update \
+    && apt-get install -y nodejs npm yarn
 
 CMD [ "irb" ]
