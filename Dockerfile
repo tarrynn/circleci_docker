@@ -123,6 +123,9 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y netcat lsof
 
+RUN apt-get update \
+    && apt-get install -y xvfb
+
 CMD [ "node" ]
 
 CMD [ "irb" ]
