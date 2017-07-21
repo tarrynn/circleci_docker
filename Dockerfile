@@ -120,6 +120,9 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y telnet beanstalkd redis-server
 
+RUN apt-get update \
+    && apt-get install -y netcat
+
 CMD [ "node" ]
 
 CMD [ "irb" ]
