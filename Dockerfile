@@ -126,6 +126,10 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y xvfb
 
+RUN apt-get update \
+    && apt-get install -y nginx
+
+
 CMD [ "node" ]
 
 CMD [ "irb" ]
