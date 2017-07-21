@@ -121,7 +121,7 @@ RUN apt-get update \
     && apt-get install -y telnet beanstalkd redis-server
 
 RUN apt-get update \
-    && apt-get install -y netcat
+    && apt-get install -y netcat lsof
 
 CMD [ "node" ]
 
