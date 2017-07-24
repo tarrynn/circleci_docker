@@ -124,10 +124,13 @@ RUN apt-get update \
     && apt-get install -y netcat lsof
 
 RUN apt-get update \
-    && apt-get install -y xvfb
+    && apt-get install -y nginx
 
 RUN apt-get update \
-    && apt-get install -y nginx
+    && apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb
+
+RUN apt-get update \
+    && apt-get install -y iptables
 
 
 CMD [ "node" ]
